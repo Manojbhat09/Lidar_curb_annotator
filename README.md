@@ -1,9 +1,4 @@
 # Lidar Curb annotator
-
-### ctrl + X is start annotation and highlights
-### ctrl + X to erase
-### P to save the annotation
-
 This is an extension of paper LATTE.
 By Bernie Wang, Virginia Wu, Bichen Wu, Kurt Keutzer
    
@@ -30,6 +25,13 @@ Your LiDAR data should include a binary file of the full point cloud, a binary f
 
 # Operations for Annotation:
 
+## Annotation
+
+1. ctrl + X is start annotation and highlights
+2. ctrl + X to erase
+3. P to save the annotation
+
+
 ## Controls
 ### "3D" mode
 1. Left click and drag to orbit around the point cloud
@@ -40,3 +42,4 @@ Your LiDAR data should include a binary file of the full point cloud, a binary f
 This version of the app assumes the LiDAR data to be stored in a binary float matrix (.bin extension). 
 Each column is a point, where the rows are in the following order: x, y, z, and intensity (little endian).
 See the 3D Velodyne point clouds in [KITTI's dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php) for example. 
+
