@@ -1,22 +1,11 @@
-# _LATTE_: Accelerating LiDAR Point Cloud Annotation via Sensor Fusion, One-Click Annotation, and Tracking
+# Lidar Curb annotator
 
-With LATTE, we are able to accelerate LiDAR point cloud annotation by 6.2x and significantly improve label quality with 23.6% and 2.2% higher instance-level precision and recall, and 2.0% higher bounding box IoU.
+### ctrl + X is start annotation and highlights
+### ctrl + X to erase
+### P to save the annotation
 
+This is an extension of paper LATTE.
 By Bernie Wang, Virginia Wu, Bichen Wu, Kurt Keutzer
-
-A demonstration of LATTE can be found below:
-
-![Alt Text](https://github.com/bernwang/LiDAR-annotator/blob/master/gifs/github_repo_demo.gif)
-
-Please refer to our video for a more in-depth demo: https://www.youtube.com/watch?v=QWjWpqvYA_c. For more details, please refer to our paper: https://arxiv.org/abs/1904.09085. If you find this work useful for your research, please consider citing:
-``` 
-   @article{wang2019latte,
-      title={LATTE: Accelerating LiDAR Point Cloud Annotation via Sensor Fusion, One-Click Annotation, and Tracking},
-      author={Wang, Bernie and Wu, Virginia and Wu, Bichen and Keutzer, Kurt},
-      journal={arXiv preprint arXiv:1904.09085},
-      year={2019}
-   }
-   ```
    
 Related works:
 ```
