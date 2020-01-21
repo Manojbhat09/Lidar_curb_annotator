@@ -41,7 +41,8 @@ var enable_point_touching = false;
 var save_points = [];
 var sphereInter;
 var pointcloud;
-
+var pause_highlight = false;
+ var intersecting;
 init();
 
 
@@ -134,23 +135,27 @@ function save_point_file(){
 }
 
 function startInteractive(){
-    console.log("Starting interactive .............")
+//     console.log("Starting interactive .............")
 //     camera.lookAt(scene.position);
     camera.updateMatrix();
 
-//     var SphereGeometry = new THREE.SphereBufferGeometry(0.02, 32, 32 );
+//     var SphereGeometry = new THREE.SphereBufferGeometry(0.1, 32, 32 );
 //     var material = new THREE.MeshBasicMaterial({color: 0xff0000});
 //     pointSphere = new THREE.Mesh(SphereGeometry, material);
 //     pointSphere.visible = false;
 //     scene.add(pointSphere);
     
-    var geometry = new THREE.SphereBufferGeometry( 0.02, 32, 32 );
-    var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+    if(pause_highlight == false){
+            var geometry = new THREE.SphereBufferGeometry( 0.05, 32, 32 );
+        var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
 
-    sphereInter = new THREE.Mesh( geometry, material );
-    sphereInter.name = "spheres"
-    sphereInter.visible = false;
-    scene.add( sphereInter );
+        sphereInter = new THREE.Mesh( geometry, material );
+        sphereInter.name = "spheres"
+        sphereInter.visible = false;
+        scene.add( sphereInter );
+    }
+    
+
 
     // var loader = new THREE.FontLoader();
     // loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
@@ -179,18 +184,24 @@ function startInteractive(){
     // } ); //end load function
 
 
-    window.addEventListener('mousemove', onMouseMove, false);
+    
     // window.requestAnimationFrame(render);
 
 
 }
 
 function onMouseMove( event ){
-                event.preventDefault();
-                mouse_click.x = mouse2D2.x;
-                mouse_click.y = mouse2D2.y;
-                console.log("mouse clicked");
-                save_points.push(new THREE.Vector3( mouse_click.x, 0, mouse_click.y));
+    event.preventDefault();
+    mouse_click.x = mouse2D2.x;
+    mouse_click.y = mouse2D2.y;
+
+    if(pause_highlight== false ){
+            console.log("saving point ");
+            console.log(intersecting[0].point);
+    //                     save_points.push(new THREE.Vector3( mouse_click.x, mouse_click.y, mouse_click.z));
+            save_points.push(intersecting[0].point );
+    }
+    
 }
 
 function updateMouse_act( event ) {
@@ -222,7 +233,19 @@ function clearNamedMesh(given_scene, object_string){
 
 function on_Key_Down(event) {
     if(event.keyCode == 80){
-        save_point_file()
+        save_point_file();
+    }
+    // D
+    if(event.ctrlKey && event.keyCode == 68){
+        if (pause_highlight == true){
+            
+            pause_highlight = false;
+        }
+        else{
+            alert("Pausing highlights");
+            pause_highlight = true;
+        }
+        
     }
     
     if(event.ctrlKey && (event.keyCode == 88)){
@@ -230,9 +253,11 @@ function on_Key_Down(event) {
             console.log("Removing highlights, back to normal")
             clearNamedMesh(scene,"spheres")
             highlightPoints = false;
+            save_points = [];
         }
         else{
-
+        pause_highlight = false;
+        window.addEventListener('mousemove', onMouseMove, false);
         enable_point_touching = true;
         highlightPoints = true;
         console.log("Ctrl + x pressed, start highlighting points, leftclick to show pointcloud")
@@ -529,7 +554,7 @@ function render() {
     
     if(enable_point_touching){
         if(highlightPoints === true){
-            console.log("highlighting points, starting interactive session ...")
+//             console.log("highlighting points, starting interactive session ...")
             startInteractive()
         }
 
@@ -541,7 +566,7 @@ function render() {
 
         // calculate intercecting mouse ray and object
         pointcloud = scene.getObjectByName( "pointcloud", true );
-        var intersecting = raycaster.intersectObject(pointcloud);
+        intersecting = raycaster.intersectObject(pointcloud);
 
         intersection = (intersecting.length > 0)? intersecting[0] : null;
 
@@ -556,7 +581,9 @@ function render() {
 //                     console.log("intersecting point")
 //                     console.log(intersecting[ 0 ].point)
                     mouse_click.z = intersecting[0].point.z
-                    sphereInter.radius= 1;
+                sphereInter.radius= 1;
+
+                    
 
             } else {
 
