@@ -29,6 +29,8 @@ Your LiDAR data should include a binary file of the full point cloud, a binary f
 
 1. ctrl + X is start annotation and highlights
 2. ctrl + X to erase
+3. ctrl + D to pause annotation
+4. ctrl + D to continue annotation
 3. P to save the annotation
 
 
