@@ -33,6 +33,11 @@ Your LiDAR data should include a binary file of the full point cloud, a binary f
 4. ctrl + D to continue annotation
 3. P to save the annotation
 
+![Annotation_demo](demo/Annotation_tool2.webm)
+
+# Undo using erase, pause and continue:
+
+![Pause_demo](demo/Annotation_tool4.webm)
 
 ## Controls
 ### "3D" mode
