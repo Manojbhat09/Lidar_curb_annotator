@@ -43,6 +43,7 @@ var sphereInter;
 var pointcloud;
 var pause_highlight = false;
  var intersecting;
+ var toggle_green = false;
 init();
 
 
@@ -89,6 +90,7 @@ function init() {
     document.getElementById( 'move' ).addEventListener( 'click', moveMode, false );
     document.getElementById( 'move2D' ).addEventListener( 'click', move2DMode, false );
     document.getElementById( 'start_interacting' ).addEventListener('click', startInteractive, false);
+    document.getElementById( 'green_color' ).addEventListener('click', green_color, false);
     document.getElementById( 'save_points' ).addEventListener('click', save_point_file, false);
 //     document.addEventListener("keydown", onKeyDown2);  //or however you are calling your method
     document.addEventListener("keyup", onKeyUp2);
@@ -111,6 +113,24 @@ function write_frame_out() {
 //     evaluation.write_frame();
 // }
 
+function green_color(){
+    if(toggle_green == false){
+        var colors = app.cur_pointcloud.geometry.colors;
+        for(var i=0; i < app.cur_pointcloud.geometry.vertices.length; i++){
+            colors[i].setRGB( 0.22,1,0.078);
+        }
+        app.cur_pointcloud.geometry.colorsNeedUpdate = true;
+        toggle_green = true;
+        $("#green_color").text("Undo highlights");
+    }
+    else{
+        generatePointCloud()
+        app.cur_pointcloud.geometry.verticesNeedUpdate = true;
+        toggle_green = false;
+        $("#green_color").text("Debug highlights");
+    }
+    
+}
 
 function save_point_file(){
     
@@ -232,11 +252,12 @@ function clearNamedMesh(given_scene, object_string){
 }
 
 function on_Key_Down(event) {
+    event.preventDefault();
     if(event.keyCode == 80){
         save_point_file();
     }
     // D
-    if(event.ctrlKey && event.keyCode == 68){
+    if(event.ctrlKey && event.keyCode == 90){
         if (pause_highlight == true){
             
             pause_highlight = false;
@@ -247,7 +268,7 @@ function on_Key_Down(event) {
         }
         
     }
-    
+    // X
     if(event.ctrlKey && (event.keyCode == 88)){
         if(highlightPoints == true){
             console.log("Removing highlights, back to normal")
@@ -655,10 +676,12 @@ function update_footer(pos) {
     
     var x = pos.z;
     var y = pos.x;
-
+    var saved_length = save_points.length;
     $("#footer").find("p").html("x: {0}{1}y: {2}".format(x.toFixed(3), 
                                                         "<br />", 
                                                         y.toFixed(3)));
+    $("#footer.saved").find("p").html("Saved Points: {0} {1}".format(saved_length, 
+                                                        "<br />" ));
 }
 
 

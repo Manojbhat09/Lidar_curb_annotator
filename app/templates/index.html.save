@@ -24,17 +24,14 @@
 					<a href="#" class="selected" id="move"><i class="fa material-icons">3d_rotation</i></a>
 					<a href="#" id="move2D"><i class="fa fa-pencil"></i></a>
 				</li>
-				<li>
-					<!-- <button type='button' id='record'>Click to start recording</button> -->
-					<button type='button' id='start_interacting'>Start interacting</button>
-					<button type='button' id='save_points'>Save frame</button>
-					<button type='button' id='green_color'>Debug highlights</button>
 
-				</li> 
+				<li>
+					<button type='button' id='record'>Click to start recording</button>
+				</li> -->
 			</ul>
 			<ul id="tools_wrapper">
 				<li>
-					<div>
+					<button type='button' id='record'>Click to start recording</button><div>
 						<table id="frames-table">
 							<thead>
 								<tr style="display:block;" >
@@ -83,28 +80,7 @@
 
 		<div id="info">LiDAR Annotator</div>
 		<div id="draw_bounding_box_reminder"><p></p></div>
-		<div id="footer">
-			<p></p>
-		</div>
-		<div id="footer" class="saved" style="margin-bottom: 30px">
-			<p></p>
-		</div>
-		<div id="key_display" 
-		style="
-		position: absolute;
-		top: 100px;
-		font-size: x-small;
-		right: 0;
-		margin-right: 50px;
-		line-height: 0;">
-			<p>Keys: </p>
-			<p>1. ctrl + X is start annotation and highlights</p>
-			<p>2. ctrl + X to erase</p>
-			<p>3. ctrl + Z to pause annotation</p>
-			<p>4. ctrl + Z to continue annotation</p>
-			<p>3. P to save the annotation</p>
-			<p>Data Location: app/test_dataset/<filename>drive_**_sync/bin_data/</p>
-		</div>
+		<div id="footer"><p></p></div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="static/js/libs/three.min.js"></script>
@@ -125,7 +101,6 @@
 	<script src="static/js/Evaluation.js?nocache"></script>
 	<script src="static/js/Evaluator.js?nocache"></script>
 	<script src="static/js/imagePanels.js?nocache"></script>
-	 <script src="static/js/require.js?nocache"></script>
 	<script src="static/js/init.js?nocache"></script>
 	<script src="static/js/main.js?nocache"></script>
 

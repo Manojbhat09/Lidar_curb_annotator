@@ -1,6 +1,7 @@
 FRAMES_TABLE = "#frames-table"
 OBJECT_TABLE = "#object-table"
 COLOR_RED =  new THREE.Color( 1,0,0 );
+COLOR_GREEN =  new THREE.Color( 0.22,1,0.078 );
 COLOR_WHITE = new THREE.Color( 1,1,1 );
 DATA_STRIDE = 4;
 FRAME_ROW_FOCUS = "rgba(120, 120, 120, 1)";
